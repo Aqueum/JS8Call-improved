@@ -682,11 +682,11 @@ WideGraph::setPeriod(int const ntrperiod)
 }
 
 void
-WideGraph::setFreq(int const n)
+WideGraph::setFreq(int const audio_qrg)
 {
-  emit setXIT(n);
-  ui->widePlot->setFreq(n);
-  ui->offsetSpinBox->setValue(n);
+  emit setXIT(audio_qrg);
+  ui->widePlot->setFreq(audio_qrg);
+  ui->offsetSpinBox->setValue(audio_qrg);
 }
 
 void
