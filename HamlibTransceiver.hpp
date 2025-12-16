@@ -39,6 +39,9 @@ class HamlibTransceiver final
                               QObject * parent = nullptr);
   explicit HamlibTransceiver (TransceiverFactory::PTTMethod ptt_type, QString const& ptt_port,
                               QObject * parent = nullptr);
+ protected:
+  /** Work around hamlib bug [#1966](https://github.com/Hamlib/Hamlib/issues/1966). */
+  virtual void hamlib_bug_bandaid(TransceiverState const&s);
 
  private:
   int do_start () override;

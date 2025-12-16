@@ -95,6 +95,7 @@ void TransceiverBase::set (TransceiverState const& s,
                   // || s.split () != requested_.split ())) // or split change
                   || (s.tx_frequency () && ptt_on)) // or about to tx split
                 {
+                  hamlib_bug_bandaid(s);
                   do_tx_frequency (s.tx_frequency (), s.mode (), ptt_on);
                   do_post_tx_frequency (s.tx_frequency (), s.mode ());
 

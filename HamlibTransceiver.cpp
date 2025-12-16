@@ -746,6 +746,17 @@ void HamlibTransceiver::do_frequency (Frequency f, MODE m, bool no_ignore)
     }
 }
 
+/** Work around hamlib bug [#1966](https://github.com/Hamlib/Hamlib/issues/1966). */
+void HamlibTransceiver::hamlib_bug_bandaid(TransceiverState const&s) {
+    if (s.frequency() == s.tx_frequency() && s.split() && s.ptt()) {
+        // Change the frequency ever so slightly without telling anybody.
+        // Will not matter during the upcoming transmit and will be corrected
+        // with the next update when the receive comes in.
+        TRACE_CAT ("HamlibTransceiver", "Fiddling with rx frequency to work around a hamlib bug.");
+        error_check (rig_set_freq (rig_.data (), RIG_VFO_CURR, s.frequency() + 1), tr ("fiddling frequency as a hamlib bug workaround."));
+    }
+}
+
 void HamlibTransceiver::do_tx_frequency (Frequency tx, MODE mode, bool no_ignore)
 {
   TRACE_CAT ("HamlibTransceiver", tx << "reversed:" << reversed_);

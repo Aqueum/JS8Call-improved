@@ -103,6 +103,8 @@ protected:
   virtual void do_frequency (Frequency, MODE, bool no_ignore) = 0;
   virtual void do_post_frequency (Frequency, MODE) {}
 
+  /** Work around hamlib bug [#1966](https://github.com/Hamlib/Hamlib/issues/1966). */
+  inline virtual void hamlib_bug_bandaid(TransceiverState const&) {};
   virtual void do_tx_frequency (Frequency, MODE, bool no_ignore) = 0;
   virtual void do_post_tx_frequency (Frequency, MODE) {}
 
