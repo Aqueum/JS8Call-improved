@@ -2,6 +2,17 @@ name: CI Build for Windows 10+ x64
 
 on: 
   workflow_dispatch: 
+    inputs:
+      build-type:
+        description: 'Build type (Debug/Release)'
+        required: false
+        type: string
+        default: 'Release'
+      release-ver:
+        description: 'Release Version (v2.5.0)'
+        required: false
+        type: string
+        default: 'v2.5.0'
   pull_request:
   workflow_call:
     inputs:
