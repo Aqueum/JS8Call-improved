@@ -247,6 +247,7 @@ target_sources(
   jsc_map.cpp
   jsc.cpp
   LazyFillComboBox.cpp
+  widgets/CheckableItemComboBox.cpp
   logqso.cpp
   main.cpp
   mainwindow.cpp
@@ -254,6 +255,9 @@ target_sources(
   JS8MessageBox.cpp
   MessageClient.cpp
   MessageError.cpp
+  NetworkMessage.cpp
+  WSJTXMessageClient.cpp
+  WSJTXMessageMapper.cpp
   messagereplydialog.cpp
   MessageServer.cpp
   messagewindow.cpp

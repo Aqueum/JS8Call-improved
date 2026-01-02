@@ -190,6 +190,9 @@
 #include "varicode.h"
 
 #include "ui_Configuration.h"
+#include "widgets/CheckableItemComboBox.hpp"
+#include <QNetworkInterface>
+#include <QStandardItemModel>
 #include "moc_Configuration.cpp"
 
 namespace
@@ -400,6 +403,8 @@ private:
   QAudioDevice find_audio_device (QAudioDevice::Mode, QComboBox *, QString const& device_name);
   void load_audio_devices (QAudioDevice::Mode, QComboBox *, QAudioDevice *);
   void update_audio_channels (QComboBox const *, QComboBox const *, int, bool);
+  void load_network_interfaces (CheckableItemComboBox *, QStringList current);
+  QStringList get_selected_network_interfaces (CheckableItemComboBox *);
 
   void find_tab (QWidget *);
 
@@ -668,6 +673,14 @@ private:
   bool udpEnabled_;
   bool tcpEnabled_;
   int tcpMaxConnections_;
+  // WSJT-X Protocol settings
+  bool wsjtx_protocol_enabled_;
+  QString wsjtx_server_name_;
+  port_type wsjtx_server_port_;
+  int wsjtx_TTL_;
+  bool wsjtx_accept_requests_;
+  QStringList wsjtx_interface_names_;
+  QString wsjtx_loopback_interface_name_;
   DataMode data_mode_;
   bool pwrBandTxMemory_;
   bool pwrBandTuneMemory_;
@@ -828,6 +841,13 @@ QString Configuration::tcp_server_name () const {return m_->tcp_server_name_;}
 auto Configuration::tcp_server_port () const -> port_type {return m_->tcp_server_port_;}
 bool Configuration::accept_udp_requests () const {return m_->accept_udp_requests_;}
 bool Configuration::accept_tcp_requests () const {return m_->accept_tcp_requests_;}
+// WSJT-X Protocol accessors
+bool Configuration::wsjtx_protocol_enabled () const {return m_->wsjtx_protocol_enabled_;}
+QString Configuration::wsjtx_server_name () const {return m_->wsjtx_server_name_;}
+auto Configuration::wsjtx_server_port () const -> port_type {return m_->wsjtx_server_port_;}
+int Configuration::wsjtx_TTL () const {return m_->wsjtx_TTL_;}
+bool Configuration::wsjtx_accept_requests () const {return m_->wsjtx_accept_requests_;}
+QStringList Configuration::wsjtx_interface_names () const {return m_->wsjtx_interface_names_;}
 QString Configuration::n3fjp_server_name () const {return m_->n3fjp_server_name_;}
 auto Configuration::n3fjp_server_port () const -> port_type {return m_->n3fjp_server_port_;}
 bool Configuration::broadcast_to_n3fjp () const {return m_->broadcast_to_n3fjp_;}
@@ -1622,6 +1642,13 @@ void Configuration::impl::initialize_models ()
   ui_->tcpEnable->setChecked(tcpEnabled_);
   ui_->udpEnable->setChecked(udpEnabled_);
   ui_->tcp_max_connections_spin_box->setValue(tcpMaxConnections_);
+  // WSJT-X Protocol settings
+  ui_->wsjtx_enable_check_box->setChecked(wsjtx_protocol_enabled_);
+  ui_->wsjtx_server_line_edit->setText(wsjtx_server_name_);
+  ui_->wsjtx_server_port_spin_box->setValue(wsjtx_server_port_);
+  ui_->wsjtx_TTL_spin_box->setValue(wsjtx_TTL_);
+  ui_->wsjtx_accept_requests_check_box->setChecked(wsjtx_accept_requests_);
+  load_network_interfaces(ui_->wsjtx_interfaces_combo_box, wsjtx_interface_names_);
   ui_->calibration_intercept_spin_box->setValue (calibration_.intercept);
   ui_->calibration_slope_ppm_spin_box->setValue (calibration_.slope_ppm);
 
@@ -1964,6 +1991,13 @@ void Configuration::impl::read_settings ()
   aprs_server_port_ = settings_->value ("aprsServerPort", 14580).toUInt ();
   udp_server_name_ = settings_->value ("UDPServer", "127.0.0.1").toString ();
   udp_server_port_ = settings_->value ("UDPServerPort", 2242).toUInt ();
+  // WSJT-X Protocol settings
+  wsjtx_protocol_enabled_ = settings_->value ("WSJTXProtocolEnabled", false).toBool ();
+  wsjtx_server_name_ = settings_->value ("WSJTXServer", "127.0.0.1").toString ();
+  wsjtx_server_port_ = settings_->value ("WSJTXServerPort", 2237).toUInt ();
+  wsjtx_TTL_ = settings_->value ("WSJTXTTL", 1).toInt ();
+  wsjtx_accept_requests_ = settings_->value ("WSJTXAcceptRequests", false).toBool ();
+  wsjtx_interface_names_ = settings_->value ("WSJTXInterfaces", QStringList()).toStringList ();
   tcp_server_name_ = settings_->value ("TCPServer", "127.0.0.1").toString ();
   tcp_server_port_ = settings_->value ("TCPServerPort", 2442).toUInt ();
   n3fjp_server_name_ = settings_->value ("N3FJPServer", "127.0.0.1").toString ();
@@ -2164,6 +2198,13 @@ void Configuration::impl::write_settings ()
   settings_->setValue ("aprsServerPort", aprs_server_port_);
   settings_->setValue ("UDPServer", udp_server_name_);
   settings_->setValue ("UDPServerPort", udp_server_port_);
+  // WSJT-X Protocol settings
+  settings_->setValue ("WSJTXProtocolEnabled", wsjtx_protocol_enabled_);
+  settings_->setValue ("WSJTXServer", wsjtx_server_name_);
+  settings_->setValue ("WSJTXServerPort", wsjtx_server_port_);
+  settings_->setValue ("WSJTXTTL", wsjtx_TTL_);
+  settings_->setValue ("WSJTXAcceptRequests", wsjtx_accept_requests_);
+  settings_->setValue ("WSJTXInterfaces", wsjtx_interface_names_);
   settings_->setValue ("TCPServer", tcp_server_name_);
   settings_->setValue ("TCPServerPort", tcp_server_port_);
   settings_->setValue ("N3FJPServer", n3fjp_server_name_);
@@ -2797,6 +2838,46 @@ void Configuration::impl::accept ()
   auto new_n1mm_port = ui_->n1mm_server_port_spin_box->value ();
   n1mm_server_port_ = new_n1mm_port;
   broadcast_to_n1mm_ = ui_->enable_n1mm_broadcast_check_box->isChecked ();
+
+  // WSJT-X Protocol settings
+  auto new_wsjtx_enabled = ui_->wsjtx_enable_check_box->isChecked();
+  auto new_wsjtx_server = ui_->wsjtx_server_line_edit->text();
+  auto new_wsjtx_port = ui_->wsjtx_server_port_spin_box->value();
+  auto new_wsjtx_ttl = ui_->wsjtx_TTL_spin_box->value();
+  auto new_wsjtx_accept_requests = ui_->wsjtx_accept_requests_check_box->isChecked();
+  auto new_wsjtx_interfaces = get_selected_network_interfaces(ui_->wsjtx_interfaces_combo_box);
+  
+  if (new_wsjtx_enabled != wsjtx_protocol_enabled_)
+    {
+      wsjtx_protocol_enabled_ = new_wsjtx_enabled;
+      Q_EMIT self_->wsjtx_protocol_enabled_changed (wsjtx_protocol_enabled_);
+    }
+  
+  if (new_wsjtx_server != wsjtx_server_name_ || new_wsjtx_enabled != wsjtx_protocol_enabled_)
+    {
+      wsjtx_server_name_ = new_wsjtx_server;
+      Q_EMIT self_->wsjtx_server_changed (wsjtx_protocol_enabled_ ? new_wsjtx_server : "");
+    }
+  
+  if (new_wsjtx_port != wsjtx_server_port_)
+    {
+      wsjtx_server_port_ = new_wsjtx_port;
+      Q_EMIT self_->wsjtx_server_port_changed (new_wsjtx_port);
+    }
+  
+  if (new_wsjtx_ttl != wsjtx_TTL_)
+    {
+      wsjtx_TTL_ = new_wsjtx_ttl;
+      Q_EMIT self_->wsjtx_TTL_changed (new_wsjtx_ttl);
+    }
+  
+  wsjtx_accept_requests_ = new_wsjtx_accept_requests;
+  
+  if (new_wsjtx_interfaces != wsjtx_interface_names_)
+    {
+      wsjtx_interface_names_ = new_wsjtx_interfaces;
+      Q_EMIT self_->wsjtx_interfaces_changed (wsjtx_interface_names_);
+    }
 
   if (macros_.stringList () != next_macros_.stringList ())
     {
@@ -3919,6 +4000,63 @@ auto Configuration::impl::remove_calibration (Frequency f) const -> Frequency
   if (frequency_calibration_disabled_) return f;
   return std::llround ((f - calibration_.intercept)
                        / (1. + calibration_.slope_ppm / 1.e6));
+}
+
+// load the available network interfaces into the selection combo box
+void Configuration::impl::load_network_interfaces (CheckableItemComboBox * combo_box, QStringList current)
+{
+  combo_box->clear ();
+  for (auto const& net_if : QNetworkInterface::allInterfaces ())
+    {
+      auto flags = QNetworkInterface::IsUp | QNetworkInterface::CanMulticast;
+      if ((net_if.flags () & flags) == flags)
+        {
+          bool check_it = current.contains (net_if.name ());
+          if (net_if.flags () & QNetworkInterface::IsLoopBack)
+            {
+              wsjtx_loopback_interface_name_ = net_if.name ();
+              if (!current.size ())
+                {
+                  check_it = true;
+                }
+            }
+          auto item = combo_box->addCheckItem (net_if.humanReadableName ()
+                                               , net_if.name ()
+                                               , check_it ? Qt::Checked : Qt::Unchecked);
+          auto tip = QString {"name(index): %1(%2) - %3"}.arg (net_if.name ()).arg (net_if.index ())
+                       .arg (net_if.flags () & QNetworkInterface::IsUp ? "Up" : "Down");
+          auto hw_addr = net_if.hardwareAddress ();
+          if (hw_addr.size ())
+            {
+              tip += QString {"\nhw: %1"}.arg (net_if.hardwareAddress ());
+            }
+          auto aes = net_if.addressEntries ();
+          if (aes.size ())
+            {
+              tip += "\naddresses:";
+              for (auto const& ae : aes)
+                {
+                  tip += QString {"\n  ip: %1/%2"}.arg (ae.ip ().toString ()).arg (ae.prefixLength ());
+                }
+            }
+          item->setToolTip (tip);
+        }
+    }
+}
+
+// get the selected network interfaces from the selection combo box
+QStringList Configuration::impl::get_selected_network_interfaces (CheckableItemComboBox * combo_box)
+{
+  QStringList interfaces;
+  auto model = static_cast<QStandardItemModel *> (combo_box->model ());
+  for (int row = 0; row < model->rowCount (); ++row)
+    {
+      if (Qt::Checked == model->item (row)->checkState ())
+        {
+          interfaces << model->item (row)->data ().toString ();
+        }
+    }
+  return interfaces;
 }
 
 #if !defined (QT_NO_DEBUG_STREAM)
