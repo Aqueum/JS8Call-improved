@@ -1,3 +1,7 @@
+/**
+ * @file logbook.cpp
+ * @brief Implementation of LogBook class
+ */
 #include "logbook.h"
 #include <QDebug>
 #include <QFontMetrics>
@@ -9,6 +13,10 @@ namespace
   auto logFileName = "js8call_log.adi";
   auto countryFileName = "cty.dat";
 }
+
+/**
+ * @brief Initialize the logbook by loading country data and existing log entries.
+ */
 
 void LogBook::init()
 {
@@ -35,7 +43,9 @@ void LogBook::init()
   _setAlreadyWorkedFromLog();
 }
 
-
+/**
+ * @brief Populate the CountriesWorked instance based on existing log entries.
+ */
 void LogBook::_setAlreadyWorkedFromLog()
 {
   QList<QString> calls = _log.getCallList();
@@ -50,10 +60,23 @@ void LogBook::_setAlreadyWorkedFromLog()
     }
 }
 
+/**
+ * @brief Check if a call has been worked before on a specific band.
+ * @param call The callsign to check.
+ * @param band The band to check.
+ * @return True if the call has been worked before on the specified band, false otherwise.
+ */
 bool LogBook::hasWorkedBefore(const QString &call, const QString &band){
     return _log.match(call, band);
 }
 
+/**
+ * @brief Match a callsign to its country and check if it has been worked before.
+ * @param call The callsign to match.
+ * @param countryName Output parameter to hold the matched country name.
+ * @param callWorkedBefore Output parameter indicating if the call has been worked before.
+ * @param countryWorkedBefore Output parameter indicating if the country has been worked before.
+ */
 void LogBook::match(/*in*/const QString call,
                     /*out*/ QString &countryName,
                     bool &callWorkedBefore,
@@ -75,6 +98,15 @@ void LogBook::match(/*in*/const QString call,
     }
 }
 
+/**
+ * @brief Find details associated with a callsign in the logbook.
+ * @param call The callsign to search for.
+ * @param grid Output parameter to hold the grid locator.
+ * @param date Output parameter to hold the date of the QSO.
+ * @param name Output parameter to hold the name of the operator.
+ * @param comment Output parameter to hold any comments associated with the QSO.
+ * @return True if details were found, false otherwise.
+ */
 bool LogBook::findCallDetails(
                     /*in*/
                     const QString call,
@@ -103,6 +135,17 @@ bool LogBook::findCallDetails(
     return true;
 }
 
+/**
+ * @brief Add a new QSO to the logbook and mark the country as worked.
+ * @param call The callsign of the contacted station.
+ * @param band The band on which the QSO was made.
+ * @param mode The mode of the QSO.
+ * @param submode The submode of the QSO.
+ * @param grid The grid locator of the contacted station.
+ * @param date The date of the QSO.
+ * @param name The name of the operator.
+ * @param comment Any comments associated with the QSO.
+ */
 void LogBook::addAsWorked(const QString call, const QString band, const QString mode, const QString submode, const QString grid, const QString date, const QString name, const QString comment)
 {
   _log.add(call,band,mode,submode,grid,date,name,comment);
@@ -110,6 +153,3 @@ void LogBook::addAsWorked(const QString call, const QString band, const QString 
   if (countryName.length() > 0)
     _worked.setAsWorked(countryName);
 }
-
-
-
