@@ -1,5 +1,5 @@
 /**
- * @file aprsinboundrelay.h
+ * @file AprsInboundRelay.h
  * @brief Defines the inbound APRS-IS relay handler for JS8Call.
  */
 #ifndef APRSINBOUNDRELAY_H

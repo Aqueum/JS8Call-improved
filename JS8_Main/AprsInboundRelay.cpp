@@ -1,5 +1,5 @@
 /**
- * @file aprsinboundrelay.cpp
+ * @file AprsInboundRelay.cpp
  * @brief Implements inbound APRS-IS relay processing.
  */
 /**
@@ -11,7 +11,7 @@
  * with an @APRSIS MSG TO:<DEST> <TEXT> DE <CALLINGSTATION>
  * The destination station puts it in it's inbox. 
  */
-#include "aprsinboundrelay.h"
+#include "AprsInboundRelay.h"
 
 #include "JS8_UI/Configuration.h"
 #include "JS8_Main/DriftingDateTime.h"
@@ -21,7 +21,7 @@
 #include <QRegularExpression>
 #include <utility>
 
-#include "moc_aprsinboundrelay.cpp"
+#include "moc_AprsInboundRelay.cpp"
 
 Q_DECLARE_LOGGING_CATEGORY(mainwindow_js8)
 

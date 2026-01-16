@@ -223,6 +223,7 @@ target_sources(
   JS8_Logbook/countrydat.cpp
   JS8_Logbook/countriesworked.cpp
   JS8_Logbook/logbook.cpp
+  JS8_Main/AprsInboundRelay.cpp
   JS8_Main/APRSISClient.cpp
   JS8_Main/AttenuationSlider.cpp
   JS8_Main/Bands.cpp
@@ -296,7 +297,6 @@ target_sources(
   JS8_UDP/NetworkMessage.cpp
   JS8_UDP/WSJTXMessageClient.cpp
   JS8_UDP/WSJTXMessageMapper.cpp
-  JS8_Main/aprsinboundrelay.cpp
   JS8_UI/Configuration.cpp
   JS8_UI/about.cpp
   JS8_UI/logqso.cpp

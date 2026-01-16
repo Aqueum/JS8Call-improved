@@ -80,6 +80,7 @@
 #include "JS8_Include/qpriorityqueue.h"
 #include "JS8_Logbook/logbook.h"
 #include "JS8_Main/APRSISClient.h"
+#include "JS8_Main/AprsInboundRelay.h"
 #include "JS8_Main/Bands.h"
 #include "JS8_Main/DriftingDateTime.h"
 #include "JS8_Main/FrequencyList.h"
@@ -122,7 +123,6 @@
 #include "messagereplydialog.h"
 #include "messagewindow.h"
 #include "ui_mainwindow.h"
-#include "JS8_Main/aprsinboundrelay.h"
 #include <functional>
 #include <unordered_map>
 
