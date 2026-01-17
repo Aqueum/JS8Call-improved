@@ -4,11 +4,11 @@
 <tbody>
 <tr class="odd">
 <td><img src="JS8Call_User_Guide_html_e18288a9.png" style="width:0.7465in;height:0.7465in" /></td>
-<td><p><span id="anchor"></span><span id="anchor-1"></span>JS8Call de KN4CRD</p><p>2020-06-25 - v2.2</p></td>
+<td><p><span id="anchor"></span><span id="anchor-1"></span>JS8Call de KN4CRD</p><p>2026-01-18 - v2.2+ <!-- TODO: change to User Guide release date following approval | assignee: @Aqueum --> </p></td>
 </tr>
 </tbody>
 </table>
-
+**This is a partially updated version of the v2.2 User Guide.  Links have been fixed/updated so it is slightly more useful than the v2.2 original**
 <hr>
  JS8Call is an experiment in combining the robustness of
  FT8 (a weak-signal mode by K1JT) with a messaging and network protocol
