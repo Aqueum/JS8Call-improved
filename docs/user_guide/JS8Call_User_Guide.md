@@ -17,8 +17,8 @@
  under weak signal conditions and offers real-time keyboard-to-keyboard
  messaging, stored (inbox) messaging, message relay, and automatic
  station announcements. JS8Call is heavily inspired by
- [WSJT-X](https://physics.princeton.edu/pulsar/k1jt/wsjtx.html),
- [Fldigi](http://www.w1hkj.com/), and
+ [WSJT-X](https://wsjt.sourceforge.io/wsjtx.html),
+ [Fldigi](http://www.w1hkj.org/), and
  [FSQCall](http://www.qsl.net/zl1bpu/MFSK/FSQweb.htm) and would not
  exist without the hard work and dedication of the many developers in
  the amateur radio community.
@@ -172,7 +172,7 @@ JS8Call currently comes in a variety of builds.
 - Mac OSX 10.11+ (x86_64)
 
 Binary downloads are available here:
-[http://files.js8call.com/latest.html](http://files.js8call.com/latest.html)
+[https://js8call-improved.com/downloads.php](https://js8call-improved.com/downloads.php)
 
 Of course, you are always free to take a look at the [source
 code](https://bitbucket.org/widefido/js8call/) as well!
@@ -1028,7 +1028,7 @@ in saved messages which will be replaced when sending the message:
 
       - [*https://en.wikipedia.org/wiki/Prosigns_for_Morse_code*](https://en.wikipedia.org/wiki/Prosigns_for_Morse_code)
 
-      - [*http://www.hamblog.co.uk/common-psk31-abbreviations/*](http://www.hamblog.co.uk/common-psk31-abbreviations/)
+      - [*https://www.qsl.net/ct2fzi/abreviations/abreviations.html*](https://www.qsl.net/ct2fzi/abreviations/abreviations.html)
 
       - Examples:
 
@@ -1375,7 +1375,7 @@ via [https://sourceforge.net/p/wsjt/mailman/message/36224507/](https://sourcefor
 
 If you're having trouble, head over to the troubleshooting chatroom
 for help:
-[https://groups.io/g/JS8Call/chat/1423](https://groups.io/g/ft8call/chat/1423)
+[https://js8call.groups.io/g/main](https://js8call.groups.io/g/main)
 or email Jordan directly:
 [kn4crd@gmail.com](mailto:kn4crd@gmail.com)
 
@@ -1441,7 +1441,7 @@ send a carrier to make sure the rig can actually transmit at all.
 You can send bug reports to Jordan Sherer (KN4CRD) at
 [kn4crd@gmail.com](mailto:kn4crd@gmail.com) or submit them to the
 issue tracker here:
-[https://bitbucket.org/widefido/js8call/issues?status=new&status=open](https://bitbucket.org/widefido/js8call/issues?status=new&status=open)
+[https://github.com/JS8Call-improved/JS8Call-improved/issues](https://github.com/JS8Call-improved/JS8Call-improved/issues)
 
 ## API Definition
 
@@ -1637,7 +1637,7 @@ which is less than can be represented in a 21-bit number 2^21^ =
 
 Grids are encoded in 15-bits as described in:
 
-[http://physics.princeton.edu/pulsar/k1jt/wsjtx-doc/wsjtx-main-1.7.0.html#PROTOCOL_OVERVIEW](http://physics.princeton.edu/pulsar/k1jt/wsjtx-doc/wsjtx-main-1.7.0.html#PROTOCOL_OVERVIEW)
+[https://wsjt.sourceforge.io/wsjtx-doc/wsjtx-main-2.7.0.html#PROTOCOL_OVERVIEW](https://wsjt.sourceforge.io/wsjtx-doc/wsjtx-main-2.7.0.html#PROTOCOL_OVERVIEW)
 
 ## Future Work
 
@@ -1665,7 +1665,7 @@ future with the foundation laid, including:
       - Automatic forwarding of stored messages to get the message
             "closer" to the destination
 
-  - [Disruption-tolerant / Delay-tolerant Networking](https://www.nasa.gov/content/dtn)
+  - [Disruption-tolerant / Delay-tolerant Networking](https://www.nasa.gov/communicating-with-missions/delay-disruption-tolerant-networking/)
 
       - Using epidemic replication to converge a message to its
             destination automatically through extremely delayed and
