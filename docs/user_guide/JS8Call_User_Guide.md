@@ -162,14 +162,14 @@ that:
 
 JS8Call currently comes in a variety of builds.
 
-- Desktop Linux (64-bit x86_64, deb)
-- Desktop Linux (32-bit i386, deb)
-- Raspbian Stretch (armv7, deb)
-- Windows 10 (win32_64)
+- Linux (ARM64)
+- Linux (x86_64 - AMD64)
+- Windows (Windows x86_64)
   - Windows 10 is the only officially supported Windows build at this
     time, but the application has been confirmed to work all the way
     back to Windows XP.
-- Mac OSX 10.11+ (x86_64)
+- Mac OS - ARM64 (Apple Silicon)
+- Mac OS - Universal (Intel + Apple Silicon)
 
 Binary downloads are available here:
 [https://js8call-improved.com/downloads.php](https://js8call-improved.com/downloads.php)
