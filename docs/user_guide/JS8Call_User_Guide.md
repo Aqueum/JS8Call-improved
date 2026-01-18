@@ -4,7 +4,8 @@
 <tbody>
 <tr class="odd">
 <td><img src="JS8Call_User_Guide_html_e18288a9.png" style="width:0.7465in;height:0.7465in" /></td>
-<td><p><span id="anchor"></span><span id="anchor-1"></span>JS8Call de KN4CRD</p><p>2026-01-18 - v2.2+ <!-- TODO: change to User Guide release date following approval | assignee: @Aqueum --> </p></td>
+<td><p><span id="anchor"></span><span id="anchor-1"></span>JS8Call de KN4CRD</p><p>2026-01-18 - v2.2+ 
+<!-- TODO: change to User Guide release date following approval and remove 'partially updated' warning below | assignee: @Aqueum --> </p></td>
 </tr>
 </tbody>
 </table>
@@ -95,6 +96,7 @@
 - **December 22, 2019** - Version 2.1.0 general availability - Slow speed introduced!
 
 - **June 30, 2020** - Version 2.2.0 general availability
+<!-- TODO: add subsequent versions & milestones : @Aqueum -->
 
 ## Notice
 
@@ -159,10 +161,7 @@ A rule of thumb is to set your output audio just high enough to drive your trans
 #### Input & AGC
 
 For best decodes, it's best to turn off your AGC (or set it to fast) and set your input audio just high enough to read somewhere around 30-40dB on the signal meter in the app. You might have to experiment with the settings that work best for your station and you might also have to engage your attenuator for strong signals.
-
-## Your First QSO
-
-TODO: We'll eventually add an example here :)
+<!-- TODO: add your first QSO example: @Aqueum -->
 
 ## Operating JS8Call
 
@@ -407,8 +406,7 @@ Directed messaging allows three commands to be used for message storage and retr
 - QUERY MSGS - Query the destination for messages stored for your station callsign
 
 - QUERY MSG \[ID\] - Query for a specific message stored for your station callsign
-
-TODO: We'll eventually add an example here :)
+<!-- TODO: add message storage and retrieval examples | assignee: @Aqueum -->
 
 ### AUTO - Automatic Replies
 
@@ -505,10 +503,7 @@ The default way to reply to a cq is with "HW CPY?". This allows the caller to ch
   - **←** ``DR4CNK: KN4CRD RR -22 FB INTO GO28 GUD QRP DX!♢``
 
 ## Configuration
-
-### General (Station and Behavior)
-
-**TODO**
+<!-- TODO: Add General (Station and Behavior) section | assignee: @Aqueum -->
 
 ### Radio (CAT and PTT control)
 
@@ -552,10 +547,7 @@ For best decoding, when configuring your audio devices you need to apply the rig
 |:-----:|:-----:|:-----:|
 | Audio input is too low! | Audio input is just right! | Audio input is too high! |
 |![Audio input is too low!](JS8Call_User_Guide_html_e75e99fb.png)|![Audio input is just right!](JS8Call_User_Guide_html_f876c1c.png) |![Audio input is too high!](JS8Call_User_Guide_html_91907e2c.png)|
-
-### Reporting (Spotting and API)
-
-**TODO**
+<!-- TODO: Add Reporting (Spotting and API) section | assignee: @Aqueum -->
 
 ### Frequencies (Calling Frequencies and Band Hopping)
 
@@ -618,14 +610,8 @@ Saved messages have macro-like functionality. These are the macros variables (wo
   <TDELTA>     The time delta for the Selected Callsign
 ```
 - These macros also apply to configured messages like CQ, Reply, INFO, etc.
-
-### Notifications (Sound Alerts)
-
-**TODO**
-
-### UI (Customize Colors and Font)
-
-**TODO**
+<!-- TODO: Add Notifications (Sound Alerts) section | assignee: @Aqueum -->
+<!-- TODO: Add UI (Customize Colors and Font) section | assignee: @Aqueum -->
 
 ## Tips & Tricks
 
