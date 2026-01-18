@@ -133,6 +133,7 @@ class Configuration final : public QObject {
     bool spot_to_aprs() const;
     bool spot_to_aprs_relay() const;
     bool transmit_directed() const;
+    bool use_info_status_queries() const;
     bool autoreply_on_at_startup() const;
     bool autoreply_confirmation() const;
     bool heartbeat_anywhere() const;

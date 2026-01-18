@@ -412,6 +412,13 @@
                    </widget>
                   </item>
                   <item>
+                   <widget class="QCheckBox" name="use_info_status_queries_check_box">
+                    <property name="text">
+                     <string>Use INFO and STATUS boxes to ask rather than state INFO and STATUS</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QCheckBox" name="write_logs_check_box">
                     <property name="text">
                      <string>Write log files (ALL.TXT, DIRECTED.TXT, etc) of decoded text</string>
@@ -4082,6 +4089,7 @@ soundcard changes</string>
   <tabstop>tx_qsy_check_box</tabstop>
   <tabstop>avoid_forced_identify_check_box</tabstop>
   <tabstop>transmit_directed_check_box</tabstop>
+  <tabstop>use_info_status_queries_check_box</tabstop>
   <tabstop>spellcheck_check_box</tabstop>
   <tabstop>reset_activity_check_box</tabstop>
   <tabstop>checkForUpdates_checkBox</tabstop>

@@ -624,6 +624,7 @@ class Configuration::impl final : public QDialog {
     bool spot_to_aprs_;
     bool spot_to_aprs_relay_;
     bool transmit_directed_;
+    bool use_info_status_queries_;
     bool autoreply_on_at_startup_;
     bool autoreply_confirmation_;
     bool heartbeat_anywhere_;
@@ -824,6 +825,9 @@ bool Configuration::spot_to_aprs_relay() const {
 }
 
 bool Configuration::transmit_directed() const { return m_->transmit_directed_; }
+bool Configuration::use_info_status_queries() const {
+    return m_->use_info_status_queries_;
+}
 bool Configuration::autoreply_on_at_startup() const {
     // auto-reply cannot be on at startup if the callsign or grid is empty
     if (my_callsign().isEmpty() || my_grid().isEmpty()) {
@@ -1732,6 +1736,8 @@ void Configuration::impl::initialize_models() {
     ui_->enable_aprs_spotting_check_box->setChecked(spot_to_aprs_);
     ui_->enable_aprs_relay_check_box->setChecked(spot_to_aprs_relay_);
     ui_->transmit_directed_check_box->setChecked(transmit_directed_);
+    ui_->use_info_status_queries_check_box->setChecked(
+        use_info_status_queries_);
     ui_->autoreply_on_check_box->setChecked(autoreply_on_at_startup_);
     ui_->autoreply_confirmation_check_box->setChecked(autoreply_confirmation_);
     ui_->heartbeat_anywhere_check_box->setChecked(heartbeat_anywhere_);
@@ -2102,6 +2108,8 @@ void Configuration::impl::read_settings() {
         settings_->value("AudioOutputChannel", "Mono").toString());
 
     transmit_directed_ = settings_->value("TransmitDirected", true).toBool();
+    use_info_status_queries_ =
+        settings_->value("UseInfoStatusQueries", false).toBool();
     autoreply_on_at_startup_ =
         settings_->value("AutoreplyOnAtStartup", true).toBool();
     autoreply_confirmation_ =
@@ -2379,10 +2387,11 @@ void Configuration::impl::write_settings() {
                             AudioDevice::toString(audio_output_channel_));
     }
     if (!notification_audio_output_device_.isNull()) {
-        settings_->setValue("NotificationSoundOutName",
+    settings_->setValue("NotificationSoundOutName",
                             notification_audio_output_device_.description());
     }
     settings_->setValue("TransmitDirected", transmit_directed_);
+    settings_->setValue("UseInfoStatusQueries", use_info_status_queries_);
     settings_->setValue("AutoreplyOnAtStartup", autoreply_on_at_startup_);
     settings_->setValue("AutoreplyConfirmation", autoreply_confirmation_);
     settings_->setValue("BeaconAnywhere", heartbeat_anywhere_);
@@ -3034,6 +3043,8 @@ void Configuration::impl::accept() {
     check_for_updates_ = ui_->checkForUpdates_checkBox->isChecked();
     tx_qsy_allowed_ = ui_->tx_qsy_check_box->isChecked();
     transmit_directed_ = ui_->transmit_directed_check_box->isChecked();
+    use_info_status_queries_ =
+        ui_->use_info_status_queries_check_box->isChecked();
     autoreply_on_at_startup_ = ui_->autoreply_on_check_box->isChecked();
     autoreply_confirmation_ =
         ui_->autoreply_confirmation_check_box->isChecked();

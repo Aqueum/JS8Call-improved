@@ -5830,6 +5830,13 @@ void MainWindow::on_snrMacroButton_clicked() {
 }
 
 void MainWindow::on_infoMacroButton_clicked() {
+    if (m_config.use_info_status_queries()) {
+        addMessageText("INFO?");
+        if (m_config.transmit_directed())
+            toggleTx(true);
+        return;
+    }
+
     QString info = m_config.my_info();
     if (info.isEmpty()) {
         return;
@@ -5843,6 +5850,13 @@ void MainWindow::on_infoMacroButton_clicked() {
 }
 
 void MainWindow::on_statusMacroButton_clicked() {
+    if (m_config.use_info_status_queries()) {
+        addMessageText("STATUS?");
+        if (m_config.transmit_directed())
+            toggleTx(true);
+        return;
+    }
+
     QString status = m_config.my_status();
     if (status.isEmpty()) {
         return;
@@ -6869,8 +6883,9 @@ void MainWindow::updateButtonDisplay() {
 
     auto selectedCallsign = callsignSelected(true);
     bool emptyCallsign = selectedCallsign.isEmpty();
-    bool emptyInfo = m_config.my_info().isEmpty();
-    bool emptyStatus = m_config.my_status().isEmpty();
+    bool useInfoStatusQueries = m_config.use_info_status_queries();
+    bool emptyInfo = m_config.my_info().isEmpty() && !useInfoStatusQueries;
+    bool emptyStatus = m_config.my_status().isEmpty() && !useInfoStatusQueries;
 
     bool previous_hbButtonisLongterm = m_hbButtonIsLongterm;
     m_hbButtonIsLongterm = false;
@@ -6892,6 +6907,19 @@ void MainWindow::updateButtonDisplay() {
     ui->queryButton->setText(
         emptyCallsign ? "Directed"
                       : QString("Directed to %1").arg(selectedCallsign));
+
+    if (useInfoStatusQueries) {
+        ui->infoMacroButton->setText("INFO?");
+        ui->infoMacroButton->setToolTip(tr("Request station information"));
+        ui->statusMacroButton->setText("STATUS?");
+        ui->statusMacroButton->setToolTip(tr("Request station status"));
+    } else {
+        ui->infoMacroButton->setText("INFO");
+        ui->infoMacroButton->setToolTip(
+            tr("Send your station information message"));
+        ui->statusMacroButton->setText("STATUS");
+        ui->statusMacroButton->setToolTip(tr("Send your station status message"));
+    }
 
     // update mode button text
     updateModeButtonText();
