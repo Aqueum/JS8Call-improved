@@ -903,7 +903,9 @@ Check your incoming audio from your rig. Make sure JS8Call audio is configured c
 
 Check to make sure you're on one of the JS8Call frequencies. Keep in mind that JS8Call is still in development and has more than *an order of magnitude fewer operators* on the air. There may actually be nobody on within your reception range. Check PSKReporter to see if there are others on the band. If you still cannot see any signals, either:
 
-1)  You have an RX problem with your station 2)  None of the operators are operating on the band you are on 3)  Or propagation isn't being friendly to you
+1) You have an RX problem with your station,
+2) None of the operators are operating on the band you are on, or
+3) Propagation isn't being friendly to you.
 
 NOTE: Keep in mind that JS8Call isn't magic...we're still at the mercy of the ionosphere.
 
