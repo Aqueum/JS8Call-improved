@@ -96,7 +96,7 @@
 - **December 22, 2019** - Version 2.1.0 general availability - Slow speed introduced!
 
 - **June 30, 2020** - Version 2.2.0 general availability
-<!-- TODO: add subsequent versions & milestones : @Aqueum -->
+<!-- TODO: add subsequent versions & milestones | assignee: @Aqueum -->
 
 ## Notice
 
@@ -146,7 +146,7 @@ Make sure your rig is set to upper sideband (USB) mode for every band. If you ar
 
 ### Duty Cycle
 
-The JS8 modulator is a constant envelope, full-duty modulation that transmits in 12.6 second frames in normal speed. Because of the dead air between transmission frames, multi-frame messages can be classified as 84% duty on a 15-second window (12.6 / 15 = 0.84) for normal and slow (25.28 / 30 = 0.84), 79% for fast on a 10-second window (7.9 / 10 = 0.79), 65% for turbo on a 6-second window (3.95 / 6 = 0.653), .
+The JS8 modulator is a constant envelope, full-duty modulation that transmits in 12.6 second frames in normal speed. Because of the dead air between transmission frames, multi-frame messages can be classified as 84% duty on a 15-second window (12.6 / 15 = 0.84) for normal and slow (25.28 / 30 = 0.84), 79% for fast on a 10-second window (7.9 / 10 = 0.79), 65% for turbo on a 6-second window (3.95 / 6 = 0.653).
 
 Please make note of the power restrictions your transceiver manufacturer recommends for full-duty digital transmissions. When in doubt, use only a maximum of 50% of your rig's power output to "save your finals".
 
