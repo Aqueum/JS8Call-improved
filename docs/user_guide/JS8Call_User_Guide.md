@@ -272,9 +272,8 @@ Then, all group member stations who have AUTO enabled would respond with a signa
 
 There are a number of built-in group callsigns that can be transmitted just as efficiently as standard callsigns. All custom groups will require an extra frame during transmission:
 
-|        |           |          |          |          |         |
-|--------|-----------|----------|----------|----------|---------|
 | **Continental DX** | **ITU Regions** | **Generic Groups** | **Operator Groups** | **Special Groups** | **Additional Groups** |
+|--------|-----------|----------|----------|----------|---------|
 | @DX/NA | @REGION/1 | @GROUP/0 | @COMMAND | @JS8NET  | @EMCOMM  |
 | @DX/SA | @REGION/2 | @GROUP/1 | @CONTROL | @APRSIS  | @ARES    |
 | @DX/EU | @REGION/3 | @GROUP/2 | @NTS     | @RAGCHEW | @MARS    |
@@ -547,9 +546,8 @@ For best decoding, when configuring your audio devices you need to apply the rig
 
 6.  If those adjustments are still not enough, you're likely operating under an extremely noisy condition. You might have luck at this point to start playing with AF Gain to bring the input levels even further down to that sweet spot of 30-60dB as read by the meter in the app.
 
-| | | |
-|:-----:|:-----:|:-----:|
 | Audio input is too low! | Audio input is just right! | Audio input is too high! |
+|:-----:|:-----:|:-----:|
 |![Audio input is too low!](JS8Call_User_Guide_html_e75e99fb.png)|![Audio input is just right!](JS8Call_User_Guide_html_f876c1c.png) |![Audio input is too high!](JS8Call_User_Guide_html_91907e2c.png)|
 <!-- TODO: Add Reporting (Spotting and API) section | assignee: @Aqueum -->
 
@@ -557,20 +555,19 @@ For best decoding, when configuring your audio devices you need to apply the rig
 
 Most operators testing the application can be found +/- 4-8kHz from the standard FT8 frequencies. It is essential to avoid the main FT8 frequencies, as that will cause confusion among WSJT-X operators. Here are some suggested frequencies to use:
 
-|         |           |          |          |          |         |      |
-|--------:|-----------|----------|----------|----------|---------|------|
-| **Band** | **Frequency** | **Hz** | | **Spacing** | **Above/below** | **Mode** |
-| 160M | 1.842  | MHz | // | 2kHZ | above | FT8 |
-|  80M | 3.578  | MHz | // | 5kHz | above | FT8 |
-|  40M | 7.078  | MHz | // | 4kHz | above | FT8 |
-|  30M | 10.130 | MHz | // | 6kHz | below | FT8 |
-|  20M | 14.078 | MHz | // | 4kHz | above | FT8 |
-|  17M | 18.104 | MHz | // | 4kHz | above | FT8 |
-|  15M | 21.078 | MHz | // | 4kHz | above | FT8 |
-|  12M | 24.922 | MHz | // | 9kHz | above | FT8 |
-|  10M | 28.078 | MHz | // | 4kHz | above | FT8 |
-|   6M | 50.318 | MHz | // | 5kHz | above | FT8 |
-|   2M |144.178 | MHz | // | 4kHz | above | FT8 |
+| **Band** | **Frequency** | **Spacing** | **Above/below** | **Mode** |
+|--------:|-----------|----------|---------|------|
+| 160M | 1.842MHz | 2kHZ | above | FT8 |
+|  80M | 3.578MHz | 5kHz | above | FT8 |
+|  40M | 7.078MHz | 4kHz | above | FT8 |
+|  30M | 10.130MHz |  6kHz | below | FT8 |
+|  20M | 14.078MHz | 4kHz | above | FT8 |
+|  17M | 18.104MHz | 4kHz | above | FT8 |
+|  15M | 21.078MHz | 4kHz | above | FT8 |
+|  12M | 24.922MHz | 9kHz | above | FT8 |
+|  10M | 28.078MHz | 4kHz | above | FT8 |
+|   6M | 50.318MHz | 5kHz | above | FT8 |
+|   2M |144.178MHz | 4kHz | above | FT8 |
 
 You might notice a few of these being close to the JT9 frequencies. Don't grab your pitchforks! JS8Call blocks out transmitting within the lower 500Hz of the passband. This leaves enough room for 25 simultaneous JT9 signals.
 
@@ -935,9 +932,8 @@ JS8Call is under active development and details about the technical implementati
 
 JS8Call uses JS8 modulation as the base transport for data. Being a derivative of WSJT-X, JS8Call heavily leverages the work by the WSJT-X Development Group on the FT8 mode.
 
-|           |                 |                     |               |                              |
-|-----------|-----------------|---------------------|---------------|------------------------------|
 | **Speed** | **TX Duration** | **Tones / Symbols** | **Baud Rate** | **Tone Spacing / Bandwidth** |
+|-----------|-----------------|---------------------|---------------|------------------------------|
 | SLOW      | 25.28 seconds   | 8 / 79              | 3.125 baud    | 3.125Hz / 25Hz               |
 | NORMAL    | 12.64 seconds   | 8 / 79              | 6.25 baud     | 6.25Hz / 50Hz                |
 | FAST      | 7.9 seconds     | 8 / 79              | 10 baud       | 10Hz / 80Hz                  |
@@ -1113,10 +1109,9 @@ There are many opportunities to explore reliable messaging in the future with th
 
 **Character code weighted by frequency**
 
-| | | | | | |
-|:--------:|-------:|:--------:|-------:|:--------:|-------:|
 | **Character Code** | **Frequency** | **Character Code** | **Frequency** | **Character Code** | **Frequency** |
-| "\<space\> " | 01   | P | 1111011 | 4 | 11110101 |
+|:--------:|-------:|:--------:|-------:|:--------:|-------:|
+| " " | 01   | P | 1111011 | 4 | 11110101 |
 | E | 100    | B | 1111001 | 9 | 11110100 |
 | T | 1101   | . | 1110100 | 8 | 11110001 |
 | A | 0011   | V | 1100101 | 6 | 11110000 |
