@@ -173,10 +173,12 @@ If you've used FSQ, Fldigi or WSJT-X before, you'll feel right at home with JS8C
 
 JS8Call 2.0 introduced two new faster mode speeds for QSOs and 2.1 introduced a slow mode. The four speeds now available in JS8 are:
 
-- Slow - 30 second frames - 25Hz bandwidth - and around 8WPM decoded down to -28dB
-- Normal - 15 second frames - 50Hz bandwidth - and around 16WPM decoded down to -24dB
-- Fast - 10 second frames - 80Hz bandwidth - and around 24WPM decoded down to -20dB
-- Turbo- 6 second frames - 160Hz bandwidth - and around 40WPM decoded down to -18dB
+Name | Period/s | Bandwidth/Hz | Speed/WPM | Sensitivity/dB
+---|---|----|---|---|
+Slow | 30 | 25 | 8 | -28
+Normal | 15 | 50 | 16 | -24
+Fast | 10 | 80 | 24 | -20
+Turbo | 6 | 160 | 40 | -18
 
 The intent of the faster speeds is to start your QSO in normal and \"upgrade\" to the faster speeds if conditions support it. If you have a modern PC with a performant CPU, you can optionally enable MULTI from the mode menu, allowing the decoder to decode all mode speeds at once.
 
