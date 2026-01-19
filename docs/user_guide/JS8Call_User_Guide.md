@@ -134,7 +134,7 @@ Of course, you are always free to take a look at the [source code](https://githu
 
 ### Clock Sync / Timing
 
-In the application you can see the current time reported by your PC in UTC format. An accurate clock is important with JS8Call, as the decoder operates within a 15-second window of transmission (frames). Your clock being off greater than 2 seconds from UTC can cause messages to not decode at your station. It is best to use an Internet, NTP or GPS time source for synchronizing your clock as accurately as possible.
+In the application you can see the current time reported by your PC in UTC format. An accurate clock is important with JS8Call, as the decoder operates within a 15-second window of transmission (frames). Your clock being off greater than 2 seconds from UTC can cause messages to not decode at your station. It is best to use an Internet, NTP, or GPS time source for synchronizing your clock as accurately as possible.
 
 JS8Call includes an automatic and manual clock drift tool that you can use to modify your application time to match signals you see / hear (or to an external time source like a Timex watch, a handheld GPS device, WWV, or a rooster crowing). This is intended to be used as a fail-safe for when your synchronized time source is not available (like if you were out portable, away from internet connectivity).
 
@@ -456,7 +456,7 @@ While in QSO (i.e., when you receive a transmission that is displayed in your in
 
 Also, keep in mind that unattended transmissions may be against the rules of your jurisdiction. To be most safe, heartbeat should only be automatically sent while you're at the control point of your station. There's an idle timer that you can configure in the settings that will disable your heartbeat once you leave your station idle (no mouse or keyboard movement).
 
-``NOTE: HBs are intentionally restricted to slow, normal and fast speeds for bandwidth efficiency and enhanced compatibility in the HB network.``
+``NOTE: HBs are intentionally restricted to slow, normal, and fast speeds for bandwidth efficiency and enhanced compatibility in the HB network.``
 
 ### CQ - Calling CQ
 
