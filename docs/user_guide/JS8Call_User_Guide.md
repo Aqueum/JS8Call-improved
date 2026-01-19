@@ -122,9 +122,10 @@ JS8Call currently comes in a variety of builds.
 - Linux (ARM64)
 - Linux (x86_64 - AMD64)
 - Windows (Windows x86_64)
-  - Windows 10 is the only officially supported Windows build at this time, but the application has been confirmed to work all the way back to Windows XP.
+  - Windows 10 and 11 are the only officially supported Windows builds at this time, but the application has been confirmed to work all the way back to Windows XP.
 - Mac OS - ARM64 (Apple Silicon)
 - Mac OS - Universal (Intel + Apple Silicon)
+- [Android](https://github.com/JS8Call-improved/Android-port)
 
 Application downloads are available here: [https://github.com/JS8Call-improved/JS8Call-improved/releases/](https://github.com/JS8Call-improved/JS8Call-improved/releases/) select the relevant .AppImage for Linux, .exe for Windows, ...arm64.dmg for Apple Silicone Mac or ...universal.dmg for Intel Mac.
 
