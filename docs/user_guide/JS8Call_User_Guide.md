@@ -134,7 +134,7 @@ Of course, you are always free to take a look at the [source code](https://githu
 
 ### Clock Sync / Timing
 
-In the application you can see the current time reported by your PC in UTC format. An accurate clock is important with JS8Call, as the decoder operates within a 15-second window of transmission (frames). Your clock being off greater than 2 seconds from UTC can cause messages to not decode at your station. It is best to use an Internet, NTP, or GPS time source for synchronizing your clock as accurately as possible.
+In the application you can see the current time reported by your computer in UTC format. An accurate clock is important with JS8Call, as the decoder operates within a 15-second window of transmission (frames). Your clock being off greater than 2 seconds from UTC can cause messages to not decode at your station. It is best to use an Internet, NTP, or GPS time source for synchronizing your clock as accurately as possible.
 
 JS8Call includes an automatic and manual clock drift tool that you can use to modify JS8Call's internal clock to match signals you see / hear (or to an external time source like a Timex watch, a handheld GPS device, WWV, or a rooster crowing). This is intended to be used as a fail-safe for when your synchronized time source is not available (like if you were out portable, away from internet connectivity).
 
@@ -180,7 +180,7 @@ Normal | 15 | 50 | 16 | -24
 Fast | 10 | 80 | 24 | -20
 Turbo | 6 | 160 | 40 | -18
 
-The intent of the faster speeds is to start your QSO in normal and \"upgrade\" to the faster speeds if conditions support it. If you have a modern PC with a performant CPU, you can optionally enable MULTI from the mode menu, allowing the decoder to decode all mode speeds at once.
+The intent of the faster speeds is to start your QSO in normal and \"upgrade\" to the faster speeds if conditions support it. Unless you have a weak computer with a slow CPU, you should enable MULTI from the mode menu, asking the decoder to decode all modes at once. Other users typically expect you have that set. Otherwise if they can't reach you on Normal and move to Slow, you will not decode their message.
 
 ### Band Activity
 
