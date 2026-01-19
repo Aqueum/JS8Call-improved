@@ -138,7 +138,9 @@ In the application you can see the current time reported by your PC in UTC forma
 
 JS8Call includes an automatic and manual clock drift tool that you can use to modify your application time to match signals you see / hear (or to an external time source like a Timex watch, a handheld GPS device, WWV, or a rooster crowing). This is intended to be used as a fail-safe for when your synchronized time source is not available (like if you were out portable, away from internet connectivity).
 
-``NOTE: You do not actually have to have the exact time synchronized...just synchronized to the start of a transmission window (15, 10, or 6 seconds), +/- 2 seconds. Many operators can manually synchronize their system clock based on signals in the waterfall and the time drift reported for each station.``
+> [!NOTE] You do not actually have to have the exact time synchronized...just synchronized to the start of a transmission window (15, 10, or 6 seconds), +/- 2 seconds. Many operators can manually synchronize their system clock based on signals in the waterfall and the time drift reported for each station.
+
+> [!TIP] You can use the manual drift tool to make your JS8Call's internal clock go "wrong" on purpose, to synchronize it with another station's clock that is off. This will make communication to that station more reliable. This is available via that other station's line in the callsigns' panel, in the context menu: "Jump to X ms drift time."
 
 ### USB - Upper Sideband Only
 
@@ -456,7 +458,7 @@ While in QSO (i.e., when you receive a transmission that is displayed in your in
 
 Also, keep in mind that unattended transmissions may be against the rules of your jurisdiction. To be most safe, heartbeat should only be automatically sent while you're at the control point of your station. There's an idle timer that you can configure in the settings that will disable your heartbeat once you leave your station idle (no mouse or keyboard movement).
 
-``NOTE: HBs are intentionally restricted to slow, normal, and fast speeds for bandwidth efficiency and enhanced compatibility in the HB network.``
+> [!NOTE] HBs are intentionally restricted to slow, normal, and fast speeds for bandwidth  efficiency and enhanced compatibility in the HB network.
 
 ### CQ - Calling CQ
 
@@ -863,9 +865,9 @@ Saved messages have macro-like functionality. These are the macros variables (wo
 
         - (4x) Four Decode Passes - The decoder will perform four subtraction passes using belief propagation with ordered statistics.
 
-      - **NOTE**: You may have to run with a lower sensitivity if you have a low power machine or if your CPU cannot keep up with the decoder.
+      > [!NOTE] You may have to run with a lower sensitivity if you have a low power machine or if your CPU cannot keep up with the decoder.
 
-      - **NOTE**: Higher sensitivity levels that use ordered statistics have a higher chance of producing a "false decode" (i.e., noise that matches the sync pattern and passes the checksum process). This tradeoff is intentional. If you would like to avoid false decodes, you can decrease your sensitivity to 1x or 2x.
+      > [!NOTE] Higher sensitivity levels that use ordered statistics have a higher chance of producing a "false decode" (i.e., noise that matches the sync pattern and passes the checksum process). This tradeoff is intentional. If you would like to avoid false decodes, you can decrease your sensitivity to 1x or 2x.
 
   - I love what you're doing. Do you have a PayPal or Patreon where I can send you a donation as a "Thank you?"
 
@@ -907,7 +909,7 @@ Check to make sure you're on one of the JS8Call frequencies. Keep in mind that J
 2) None of the operators are operating on the band you are on, or
 3) Propagation isn't being friendly to you.
 
-NOTE: Keep in mind that JS8Call isn't magic...we're still at the mercy of the ionosphere.
+> [!NOTE] Keep in mind that JS8Call isn't magic...we're still at the mercy of the ionosphere.
 
 #### My rig won't transmit
 
