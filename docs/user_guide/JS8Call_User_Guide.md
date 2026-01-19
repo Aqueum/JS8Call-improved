@@ -570,7 +570,7 @@ Most operators testing the application can be found +/- 4-8kHz from the standard
 
 You might notice a few of these being close to the JT9 frequencies. Don't grab your pitchforks! JS8Call blocks out transmitting within the lower 500Hz of the passband. This leaves enough room for 25 simultaneous JT9 signals.
 
-You might also notice that there are a few bands missing from this list. JS8Call does not make a recommendation for calling frequencies on 2200m, 630m, 60m, or higher than 2m, as many of these bands are special cases and have unique rules in many jurisdictions. It's up to the operator(s) to coordinate and determine the best frequency and operating pattern on these bands.
+You might also notice that there are a few bands missing from this list. JS8Call does not make a recommendation for calling frequencies on 2200m, 630m, 11m (CB), or higher than 2m, as many of these bands are special cases and have unique rules in many jurisdictions. It's up to the operator(s) to coordinate and determine the best frequency and operating pattern on these bands.
 
 But also, please keep in mind these are only *suggested* frequencies. We all have VFOs, so please use them. Just remember to be good operators and prevent from interfering with other signals on our shared bands.
 
