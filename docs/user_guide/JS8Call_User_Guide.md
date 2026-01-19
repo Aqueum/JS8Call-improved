@@ -163,7 +163,7 @@ A rule of thumb is to set your output audio just high enough to drive your trans
 #### Input & AGC
 
 For best decodes, it's best to turn off your AGC (or set it to fast) and set your input audio just high enough to read somewhere around 30-40dB on the signal meter in the app. You might have to experiment with the settings that work best for your station and you might also have to engage your attenuator for strong signals.
-<!-- TODO: add your first QSO example: @Aqueum -->
+<!-- TODO: add your first QSO example | assignee: @aknrdureegaesr  -->
 
 ## Operating JS8Call
 
@@ -214,7 +214,7 @@ Normal FT8 character restrictions **do not** apply! The extended character set i
 
 As you type your message you'll see the send button display the transmission time it'll take to send your complete message. All you have to do is click send (or hit enter) to start transmitting on the next interval. As each frame is transmitted one after the other, the button will update with the amount of time left to transmit the message. JS8Call 2.0 supports typeahead, so you can start transmitting and continue typing your message as each frame is transmitted. Checksummed messages like MSG or Relays cannot use typeahead.
 
-Because of this special variable encoding, messages in JS8Call cannot be decoded by WSJT-X. The same is also true, WSJT-X messages will not be shown in JS8Call.
+Because of this special variable encoding, messages in JS8Call cannot be decoded by WSJT-X. The same is also true, WSJT-X messages will not be shown in JS8Call.<!-- TODO: "The reverse is also true, ... I'm just catching myself reviewing stuff that has been in the guide for a long time and none of your doing. That is a bit unfair. So I will stop doing that now and instead come up with a PR of my own, after this one has been merged." | assignee: @aknrdureegaesr  -->
 
 ### Message Types
 
