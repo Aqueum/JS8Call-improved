@@ -468,6 +468,7 @@ void UI_Constructor::readSettings() {
     m_geometryNoControls =
         m_settings->value("geometryNoControls", saveGeometry()).toByteArray();
     restoreState(m_settings->value("state", saveState()).toByteArray());
+    if (messageDock_) messageDock_->hide(); // start with inbox closed
 
     auto mainSplitterState = m_settings->value("MainSplitter").toByteArray();
     if (!mainSplitterState.isEmpty()) {

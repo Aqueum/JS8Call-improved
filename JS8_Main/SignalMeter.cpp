@@ -75,11 +75,11 @@ class SignalMeter::Meter final : public QWidget {
         p.setPen(Qt::NoPen);
 
         if (m_max > HI) {
-            p.setBrush(Qt::red);
+            p.setBrush(QColor(0xff, 0x7b, 0x72));
         } else if (m_peak < LO) {
             p.setBrush(Qt::yellow);
         } else {
-            p.setBrush(Qt::green);
+            p.setBrush(QColor(0x3f, 0xb9, 0x50));
         }
 
         auto const target = contentsRect();

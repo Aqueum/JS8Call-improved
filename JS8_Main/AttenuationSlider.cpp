@@ -29,7 +29,7 @@ constexpr auto handleSize = QSize(40, 20);
 
 constexpr auto grooveColor = QColor(192, 192, 192);
 constexpr auto activeColor = QColor(10, 129, 254);
-constexpr auto handleStartColor = QColor(0, 255, 0);
+constexpr auto handleStartColor = QColor(0x3f, 0xb9, 0x50);
 constexpr auto handleStopColor = QColor(39, 174, 96);
 constexpr auto outlineColor = QColor(0, 0, 0, 160);
 constexpr auto contrastColor = QColor(255, 255, 255, 30);

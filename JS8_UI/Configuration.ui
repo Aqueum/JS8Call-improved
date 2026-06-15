@@ -1014,7 +1014,7 @@ radio interface behave as expected.</string>
            </property>
            <property name="styleSheet">
             <string notr="true">QPushButton:checked {
-	background-color: red;
+	background-color: #ff7b72;
 	border-style	: outset;
 	border-width: 1px;
 	border-radius: 5px;

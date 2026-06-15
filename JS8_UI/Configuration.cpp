@@ -4509,7 +4509,7 @@ void Configuration::impl::handle_transceiver_update(
 
         if (isVisible()) {
             ui_->test_CAT_push_button->setStyleSheet(
-                "QPushButton {background-color: green;}");
+                "QPushButton {background-color: #3fb950;}");
 
             auto const &rig = ui_->rig_combo_box->currentText();
             auto ptt_method = static_cast<TransceiverFactory::PTTMethod>(
@@ -4562,7 +4562,7 @@ void Configuration::impl::close_rig() {
     // revert to no rig configured
     if (rig_active_) {
         ui_->test_CAT_push_button->setStyleSheet(
-            "QPushButton {background-color: red;}");
+            "QPushButton {background-color: #ff7b72;}");
         Q_EMIT stop_transceiver();
         for (auto const &connection : rig_connections_) {
             disconnect(connection);

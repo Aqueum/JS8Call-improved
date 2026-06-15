@@ -240,7 +240,7 @@ void UI_Constructor::displayCallActivity() {
                                                  : hasThrough ? "\u269F"
                                                               : "");
             
-            if (isBlocked) {iconItem->setForeground(QColor(Qt::red));}
+            if (isBlocked) {iconItem->setForeground(QColor(0xff, 0x7b, 0x72));}
 
             iconItem->setData(Qt::UserRole, QVariant(d.call));
             iconItem->setToolTip(

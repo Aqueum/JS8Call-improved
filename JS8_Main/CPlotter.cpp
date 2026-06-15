@@ -63,7 +63,7 @@ constexpr int WSPR_RANGE = 200;
 
 constexpr auto BAND_EDGE = QColor{149, 165, 166}; // Gray
 constexpr auto BAND_GOOD = QColor{46, 204, 113};  // Green
-constexpr auto BAND_WARN = QColor{241, 196, 15};  // Yellow
+constexpr auto BAND_WARN = QColor{0xd2, 0x99, 0x22};  // Yellow
 constexpr auto BAND_WSPR = QColor{230, 126, 34};  // Orange
 } // namespace
 
@@ -163,7 +163,7 @@ void CPlotter::drawLine(QString const &text) {
 
     // Draw a green line across the complete span.
 
-    p.setPen(Qt::green);
+    p.setPen(QColor(0x3f, 0xb9, 0x50));
     p.drawLine(0, 0, m_w, 0);
 
     // Compute the number of lines required before we need to draw the
@@ -256,7 +256,7 @@ void CPlotter::drawData(WF::SWide swide, WF::State const state) {
             // the delta above that value.
 
         case Spectrum::Current: {
-            p.setPen(Qt::green);
+            p.setPen(QColor(0x3f, 0xb9, 0x50));
 
             auto const min =
                 *std::min_element(swide.begin(), swide.begin() + m_w);
@@ -279,7 +279,7 @@ void CPlotter::drawData(WF::SWide swide, WF::State const state) {
             // the precomputed linear average data.
 
         case Spectrum::LinearAvg: {
-            p.setPen(Qt::yellow);
+            p.setPen(QColor(0xd2, 0x99, 0x22));
             addPoints(std::begin(specData.slin),
                       [](auto const value) { return value; });
         } break;
@@ -332,12 +332,12 @@ void CPlotter::drawMetrics() {
     if (m_ScalePixmap.isNull())
         return;
 
-    m_ScalePixmap.fill(Qt::white);
+    m_ScalePixmap.fill(Qt::black);
 
     QPainter p(&m_ScalePixmap);
 
-    p.setPen(Qt::black);
-    p.drawRect(0, 0, m_w, 30);
+    p.setPen(Qt::white);
+    ;
 
     auto const fSpan = m_w * m_freqPerPixel;
     auto const fpd = freqPerDiv(fSpan);
@@ -487,7 +487,7 @@ void CPlotter::drawFilter() {
 
                     QPainter p(&pixmap);
 
-                    p.setPen(Qt::yellow);
+                    p.setPen(QColor(0xd2, 0x99, 0x22));
                     p.drawLine(lineX, 1, lineX, height);
 
                     return pixmap;
@@ -529,7 +529,7 @@ void CPlotter::drawDials() {
             return pixmap;
         };
 
-        m_DialPixmap = {dialPixmap(Qt::red, QBrush(QColor(255, 255, 255, 75),
+        m_DialPixmap = {dialPixmap(QColor(0xff, 0x7b, 0x72), QBrush(QColor(255, 255, 255, 75),
                                                    Qt::Dense4Pattern)),
                         dialPixmap(Qt::white, Qt::transparent)};
     }
@@ -584,7 +584,7 @@ void CPlotter::replot() {
                     p.scale(1, ratio);
                     p.drawText(5, y / ratio - extra, v);
                     p.restore();
-                    p.setPen(Qt::green);
+                    p.setPen(QColor(0x3f, 0xb9, 0x50));
                     p.drawLine(0, y, width, y);
                 }
 

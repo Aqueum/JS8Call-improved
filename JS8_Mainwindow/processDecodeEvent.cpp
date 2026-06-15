@@ -32,7 +32,7 @@ void UI_Constructor::processDecodeEvent(JS8::Event::Variant const &event) {
                         };
 
                     if (e.type == JS8::Event::SyncState::Type::DECODED) {
-                        drawDecodeLine(Qt::red);
+                        drawDecodeLine(QColor(0xff, 0x7b, 0x72));
                     } else if (auto const xdtMs = static_cast<int>(e.dt * 1000);
                                std::abs(xdtMs) <= 2000) {
                         if (e.sync.candidate < 10)
