@@ -1,0 +1,49 @@
+name: Doxygen table escape probe
+# Throwaway probe: which escapes survive an @name inside a Markdown table.
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Fetch prebuilt doxygen 1.16.1
+        run: |
+          set -euo pipefail
+          mkdir -p local/doxygen1161
+          curl -fsSL -o doxygen.tar.gz \
+            "https://github.com/JS8Call-improved/js8lib/releases/download/lib%2F4.0/doxygen-1.16.1.tar.gz"
+          tar -C local/doxygen1161 -xzf doxygen.tar.gz
+          chmod +x local/doxygen1161/bin/doxygen
+
+      - name: Parse the probe file
+        run: |
+          set -euo pipefail
+          {
+            cat .github/workflows/misc/Doxyfile
+            echo "INPUT=docs/table-probe.md"
+            echo "PROJECT_NUMBER=probe"
+            echo "GENERATE_HTML=YES"
+            echo "GENERATE_LATEX=NO"
+            echo "HAVE_DOT=NO"
+            echo "USE_MDFILE_AS_MAINPAGE="
+          } | local/doxygen1161/bin/doxygen - 2> probe.log || true
+          echo "::group::raw log"
+          cat probe.log
+          echo "::endgroup::"
+          while IFS= read -r line; do
+            printf '::error::LOG %s\n' "$line"
+          done < probe.log
+          for tag in CTLBARE CTLTICK CTLESC CTLDBL CTLENT TBLBARE TBLTICK TBLESC TBLDBL TBLENT; do
+            if grep -q "$tag" probe.log; then
+              printf '::error::WARNED %s\n' "$tag"
+            else
+              printf '::error::CLEAN %s\n' "$tag"
+            fi
+          done
+          echo "::group::rendered html"
+          sed -n 's/<[^>]*>//gp' docs/html/*table-probe*.html 2>/dev/null | head -40 || true
+          echo "::endgroup::"
