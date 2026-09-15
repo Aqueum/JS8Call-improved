@@ -2,6 +2,8 @@ name: Doxygen table escape probe
 # Throwaway probe: which escapes survive an @name inside a Markdown table.
 on:
   workflow_dispatch:
+  push:
+    branches: [doxy-table-probe]
 
 jobs:
   probe:

@@ -3,6 +3,7 @@ run-name: ${{ github.event.pull_request.title || github.ref_name }} CI Build for
 
 on:
   push:
+    branches-ignore: [doxy-table-probe]
   pull_request:
   workflow_dispatch:
     inputs:
