@@ -101,8 +101,9 @@ Markdown works inside blocks, and `AUTOLINK_SUPPORT` turns names that resolve in
 that does not resolve is silently left as plain text rather than warning, so wrap anything you do
 not want linked - and anything you are unsure of - in backticks.
 
-A Markdown table is the exception: an `@name` in a cell is read as a command and warns, backticks
-or not. Keep `@names` out of tables.
+That holds inside a Markdown table as well: a bare `@name` in a cell is read as a command and
+warns, while backticks, `\@` and `@@` each silence it and render a plain at-sign. An HTML entity
+does not - `&#64;` reaches the page unrendered.
 
 ## How much to write
 
