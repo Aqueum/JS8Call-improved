@@ -48,16 +48,10 @@ jobs:
 
       - name: Rendered output
         run: |
-          python3 - <<'PY' > rendered.txt
-          import glob, re, html
-          for f in glob.glob('docs/html/*table-probe*.html') + glob.glob('docs/html/md_*.html'):
-              t = open(f, encoding='utf-8').read()
-              body = re.sub(r'<[^>]+>', ' ', t)
-              body = html.unescape(body)
-              for line in body.split('\n'):
-                  if 'CTL' in line or 'TBL' in line:
-                      print(' '.join(line.split())[:180])
-          PY
-          sort -u rendered.txt | head -9 | while IFS= read -r line; do
-            printf '::warning::RENDER %s\n' "$line"
+          files=$(grep -rl "TBLBARE\|TBLTICK\|TBLESC" --include='*.html' . || true)
+          printf '::warning::FILES %s\n' "$(echo $files | head -c 150)"
+          for f in $files; do
+            sed -e 's/<[^>]*>/ /g' "$f" | grep -E "CTL|TBL" | tr -s ' '
+          done | sed 's/^ *//' | grep -v '^$' | sort -u | head -8 | while IFS= read -r line; do
+            printf '::warning::RENDER %s\n' "$(echo "$line" | head -c 170)"
           done
