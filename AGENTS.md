@@ -104,9 +104,10 @@ to review costs a whole round trip.
 - New behaviour is opt-in. Do not change a default, override an existing user setting, or turn a
   feature on for people who did not ask for it.
 - Every new or changed function that reaches the generated documentation gets a Doxygen `/** */`
-  block; an undocumented override may inherit its base declaration's instead. Read
-  `docs/DOXYGEN.md` before writing one - it also covers the members this Doxyfile excludes, and
-  when to document one of those anyway.
+  block; an undocumented override may inherit its base declaration's instead. Keep it short: a
+  block that narrates the implementation obstructs a maintainer as much as excessive inline
+  comments do. Read `docs/DOXYGEN.md` before writing one - it also covers the members this
+  Doxyfile excludes, and when to document one of those anyway.
 - An API addition gets `@note API x.y+` in its block, and updates `docs/API.md` in the same PR.
 - Code should be well-written for human reviewers, so what it does is self-evident without any
   inline comments. At most a short one-liner can be added to something that will not be clear to

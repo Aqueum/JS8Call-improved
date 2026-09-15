@@ -4,7 +4,8 @@ This guide describes the repository's Doxyfile (`.github/workflows/misc/Doxyfile
 project's documentation conventions. Read this before writing a block, and run the check at the
 end before submitting one.
 
-Commands are written with `@`, not `\`, throughout the tree. Keep to that.
+Commands are written with `@`, not `\`, throughout the tree. Keep to that, and do not use `@fn`:
+it misbehaves under 1.16.
 
 ## The settings that generate almost all the warnings
 
@@ -39,8 +40,8 @@ for you; check the log yourself.
 
 ## What a block looks like here
 
-At the top of every new file, named to match the file exactly - a `@file` carrying the wrong
-name is a warning:
+At the top of every new file, named to match the file exactly, case included - a `@file` carrying
+the wrong name is a warning:
 
 ```cpp
 /**
@@ -54,7 +55,6 @@ exists, what it guarantees, what it deliberately does not do:
 
 ```cpp
 /**
- * @class ActivityDB
  * @brief Persistent per-band activity storage (activity.db3).
  *
  * Stores the Call Activity table and the RX text history in a dedicated SQLite
@@ -79,13 +79,20 @@ description for a non-`void` result:
  */
 ```
 
+Put the block immediately before the declaration, and leave out the structural command naming it:
+`@fn`, `@class`, `@var` and the rest are for blocks that sit elsewhere. `@file` is the exception.
+
+A named namespace needs a block too, since doxygen documents a member only if the namespace
+holding it is documented. The anonymous namespace is exempt.
+
 Because `INHERIT_DOCS = YES`, an undocumented override can inherit the base declaration's
 documentation. Do not restate it; document an override only where its behaviour genuinely differs.
 
 Because `DISTRIBUTE_GROUP_DOC = NO`, documentation attached to one member is not distributed to
 the other members in its member group. Give each member its own block. Separately, assign module
 membership with `@ingroup` or by placing the declaration inside an `@{` and `@}` group range;
-membership does not require physically moving the declaration.
+membership does not require physically moving the declaration. New groups are defined in
+`docs/defines.dox`; source files only join one.
 
 An addition to the API gets `@note API x.y+` in its block, where the version is the next release,
 and `docs/API.md` is updated in the same PR.
@@ -93,6 +100,16 @@ and `docs/API.md` is updated in the same PR.
 Markdown works inside blocks, and `AUTOLINK_SUPPORT` turns names that resolve into links. A name
 that does not resolve is silently left as plain text rather than warning, so wrap anything you do
 not want linked - and anything you are unsure of - in backticks.
+
+A Markdown table is the exception: an `@name` in a cell is read as a command and warns, backticks
+or not. Keep `@names` out of tables.
+
+## How much to write
+
+Write for the maintainer who has to change the code: the brief, the contract a caller has to
+honour, and any constraint the signature does not show. Not the implementation, not the reasoning
+behind it. A block longer than the function is hard obstructs as much as the inline comments it
+replaced.
 
 ## Checking before you submit
 
