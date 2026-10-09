@@ -806,11 +806,21 @@ void UI_Constructor::networkMessage(Message const &message, bool internal) {
                            });
         return;
     }
-    /** @brief MODE.SET_SPEED: Updates the transmission speed mode. */
+    /** @brief MODE.SET_SPEED: Updates the transmission speed mode; refused while transmitting. */
     if (type == "MODE.SET_SPEED") {
         auto ok = false;
         auto const speed =
             message.params().value("SPEED", QVariant(m_nSubMode)).toInt(&ok);
+        on_menuModeJS8_aboutToShow();
+        if (ok && speed != m_nSubMode && !ui->actionModeJS8Normal->isEnabled()) {
+            sendNetworkMessage("MODE.SET_SPEED", "",
+                               {
+                                   {"_ID", id},
+                                   {"SPEED", m_nSubMode},
+                                   {"ERROR", QString("Cannot change speed while transmitting")},
+                               });
+            return;
+        }
         if (ok) {
             if (speed == Varicode::JS8CallNormal)
                 ui->actionModeJS8Normal->setChecked(true);

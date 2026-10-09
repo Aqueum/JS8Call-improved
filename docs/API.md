@@ -706,6 +706,13 @@ Sets the currently set transmit mode speed
 
 * Sometimes it comes back with the first form.
 
+> [!NOTE]
+> `API >= 3.1`: refused while a message is transmitting. The response carries the unchanged `SPEED` and an `ERROR`; retry after `TX.END`.
+
+| Response |
+|----------|
+|{"params":{"ERROR":"Cannot change speed while transmitting","SPEED":0,"_ID":270412242558},"type":"MODE.SET_SPEED","value":""}|
+
 
 ## MODE Speeds
 | Mode      | Number |
